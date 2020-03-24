@@ -4,17 +4,15 @@ class Public::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
-  # def after_sign_up_path_for(resource)
-  #   user = EndUser.find_by(email: resource[:email])
-  #   flash[:notice] = "Signed up successfully."
-  #   end_user_path(user)
-  # end
-  #
-  # def after_sign_up_path_for(resource)
-  #   user = EndUser.find_by(email: resource[:email])
-  #   flash[:notice] = "Signed out successfully."
-  #   end_user_path(user)
-  # end
+  def after_sign_up_path_for(resource)
+    user = EndUser.find_by(email: resource[:email])
+    flash[:notice] = "Signed up successfully."
+    end_user_path(user)
+  end
+
+  def after_sign_up_path_for(resource)
+    new_end_user_session_path
+  end
 
   # GET /resource/sign_up
   # def new

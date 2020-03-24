@@ -10,13 +10,26 @@
   </head>
 
   <body>
-    <!-- <header>
+    <header>
       <div class="">
         <nav>
-
+          <ul>
+            <% if end_user_signed_in? %>
+              <li><%= link_to "マイページ", '#' %></li>
+              <li><%= link_to "カート一覧", '#' %></li>
+              <li><%= link_to 'ログアウト', destroy_end_user_session_path, method: :delete %></li>
+            <% elsif admin_signed_in? %>
+              <li><%= link_to "受注一覧", '#' %></li>
+              <li><%= link_to "商品登録", '#' %></li>
+              <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
+            <% else %>
+              <li><%= link_to '会員登録', new_end_user_registration_path %></li>
+              <li><%= link_to 'ログイン', new_end_user_session_path %></li>
+            <% end %>
+          </ul>
         </nav>
       </div>
-    </header> -->
+    </header>
     <%= yield %>
   </body>
 </html>

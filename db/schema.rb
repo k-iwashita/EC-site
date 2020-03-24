@@ -27,6 +27,13 @@ ActiveRecord::Schema.define(version: 2020_03_23_081504) do
   create_table "end_users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
+    t.string "family_name", default: "", null: false
+    t.string "last_name", default: "", null: false
+    t.string "family_name_kana", default: "", null: false
+    t.string "last_name_kana", default: "", null: false
+    t.string "phone_number", default: "", null: false
+    t.string "postal_code_home", default: "", null: false
+    t.string "address_home", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -37,11 +44,11 @@ ActiveRecord::Schema.define(version: 2020_03_23_081504) do
   end
 
   create_table "items", force: :cascade do |t|
-    t.string "name"
-    t.integer "price_excluding_tax"
-    t.text "description"
-    t.string "image_id"
-    t.boolean "is_saled?"
+    t.string "name", default: "", null: false
+    t.integer "price_excluding_tax", default: 0
+    t.text "description", default: "", null: false
+    t.string "image_id", default: "", null: false
+    t.boolean "is_saled?", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
