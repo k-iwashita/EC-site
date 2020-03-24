@@ -4,10 +4,11 @@ Rails.application.routes.draw do
      registrations: 'public/registrations'
    }
    scope module: :public do
-     resources :end_users
+     resources :end_users, only: [:show, :edit, :withdraw, :update, :destroy]
    end
    namespace :admin do
      resources :items
+     resources :end_users, only: [:show, :edit, :index, :update]
    end
    devise_for :admin, :controllers => {
      sessions: 'admin/sessions',
