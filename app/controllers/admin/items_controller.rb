@@ -10,6 +10,7 @@ class Admin::ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     @item.genre_id = params[:item][:genre].to_i
+    @item.sale_status = params[:item][:sale_status].to_i
     @item.save
     redirect_to admin_items_path
   end
@@ -25,6 +26,6 @@ class Admin::ItemsController < ApplicationController
 
   private
     def item_params
-      params.require(:item).permit(:name, :price_excluding_tax, :sale_status)
+      params.require(:item).permit(:name, :price_excluding_tax)
     end
 end
