@@ -6,6 +6,8 @@ Rails.application.routes.draw do
    scope module: :public do
      resources :end_users, only: [:show, :edit, :withdraw, :update, :destroy]
      resources :items, only: [:index, :show]
+     resources :cart_items, only: [:index, :create, :update, :destroy]
+     delete 'cart_items', to: 'cart_items#destroy_all'
      root to: 'items#top'
    end
    namespace :admin do
