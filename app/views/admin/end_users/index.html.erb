@@ -1,0 +1,8 @@
+<% @end_users.each do |user| %>
+  <div class="">
+    <p><%= user.family_name + '' + user.last_name %></p>
+    <% if user.deleted? %>
+      <p>退会済み</p>
+    <% end %>
+  </div>
+<% end %>

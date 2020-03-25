@@ -1,0 +1,4 @@
+<p><%= @user.family_name + ' ' +@user.last_name %></p>
+<p><%= @user.email %></p>
+<%= link_to 'プロフィール編集', edit_end_user_path(current_end_user) %>
+<%= button_to '退会', end_user_path(current_end_user), method: :delete, data: { confirm: '削除しますか？' } %>

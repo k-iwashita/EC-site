@@ -1,0 +1,28 @@
+<div class="container">
+  <h2>User info</h2>
+  <%= form_for @user,:url => {controller: "public/end_users", action: "update"}, method: :patch do |f| %>
+    <div class="field">
+      <%= f.label :family_name %>
+      <%= f.text_field :family_name %>
+    </div>
+    <div class="field">
+      <%= f.label :last_name %>
+      <%= f.text_field :last_name %>
+    </div>
+    <div class="field">
+      <%= f.label :family_name_kana %>
+      <%= f.text_field :family_name_kana %>
+    </div>
+    <div class="field">
+      <%= f.label :last_name_kana %>
+      <%= f.text_field :last_name_kana %>
+    </div>
+    <div class="field">
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+    </div>
+
+
+    <%= f.submit "Update User" %>
+  <% end %>
+</div>
