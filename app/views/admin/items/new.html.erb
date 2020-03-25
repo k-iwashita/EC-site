@@ -1,0 +1,25 @@
+<div class="">
+  <h2>商品登録</h2>
+  <%= form_for @item, :url => {controller: "admin/items", action: "create"}, method: :post  do |f| %>
+    <div class="">
+      <%= f.label 'タイトル' %><br>
+      <%= f.text_field :name %>
+    </div>
+    <div class="">
+      <%= f.label '税抜価格' %><br>
+      <%= f.text_field :price_excluding_tax %>
+    </div>
+    <div class="">
+      <%= f.label 'ジャンル' %><br>
+      <%= f.collection_select :genre, Genre.all, :id, :name, {include_blank: '選択してください'} %>
+    </div>
+    <div class="">
+      <%= f.label '販売状態' %><br>
+      <%= f.label '販売中' %>
+      <%= f.radio_button :sale_status, 0 %>
+      <%= f.label '販売停止中' %>
+      <%= f.radio_button :sale_status, 1 %>
+    </div>
+    <%= f.submit '商品登録' %>
+  <% end %>
+</div>

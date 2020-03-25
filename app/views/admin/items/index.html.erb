@@ -1,0 +1,19 @@
+<h2>商品一覧（管理者）</h2>
+<div class="">
+  <% @items.each do |item| %>
+    <table>
+      <tr>
+        <%= item.name %>
+      </tr>
+      <tr>
+        <%= item.price_excluding_tax.to_s + '円' %>
+      </tr>
+      <tr>
+        <%= item.genre.name %>
+      </tr>
+      <tr>
+        <%= item.sale_status %>
+      </tr>
+    </table>
+  <% end %>
+</div>
