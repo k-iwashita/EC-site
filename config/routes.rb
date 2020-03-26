@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  namespace :public do
+    get 'orders/new'
+    get 'orders/confirm'
+    get 'orders/done'
+    get 'orders/index'
+    get 'orders/show'
+  end
   devise_for :end_users, controllers: {
      sessions: 'public/sessions',
      registrations: 'public/registrations'
