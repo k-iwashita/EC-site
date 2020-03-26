@@ -11,6 +11,7 @@ Rails.application.routes.draw do
    namespace :admin do
      resources :items
      resources :end_users, only: [:show, :edit, :index, :update]
+     resources :genres, only: [:edit, :index, :create, :update]
    end
    devise_for :admin, :controllers => {
      sessions: 'admin/sessions',

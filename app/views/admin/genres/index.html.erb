@@ -1,0 +1,29 @@
+<div class="">
+  <h2>ジャンル一覧</h2>
+
+  <div class="">
+    <% @genres.each do |genre| %>
+      <div class="">
+        <p><%= genre.name %></p>
+        <p><%= genre.valid_status %></p>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="">
+    <%= form_for :genre, :url => {controller: "admin/genres", action: "create"}, method: :post  do |f| %>
+      <div class="">
+        <%= f.label 'ジャンル名' %><br>
+        <%= f.text_field :name %>
+      </div>
+      <div class="">
+        <%= f.label '有効状態' %><br>
+        <%= f.label '有効' %>
+        <%= f.radio_button :valid_status, 0 %>
+        <%= f.label '無効' %>
+        <%= f.radio_button :valid_status, 1 %>
+      </div>
+      <%= f.submit 'ジャンル追加' %>
+    <% end %>
+  </div>
+</div>
