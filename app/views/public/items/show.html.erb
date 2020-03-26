@@ -1,0 +1,25 @@
+<div class="">
+  <table>
+    <tr>
+      <%= @item.name %>
+    </tr>
+    <tr>
+      <%= @item.price_excluding_tax.to_s + '円' %>
+    </tr>
+    <tr>
+      <%= @item.genre.name %>
+    </tr>
+    <tr>
+      <%= @item.sale_status %>
+    </tr>
+  </table>
+</div>
+
+<div class="">
+  <%= form_for :cart_item, url: cart_items_path, method: :post do |f| %>
+    <%= f.hidden_field :id, :value => @item.id %>
+    <%= f.label '購入数を入力' %><br>
+    <%= f.number_field :amount , min: 1, value: 1 %>
+    <%= f.submit 'カートに追加' %>
+  <% end %>
+</div>

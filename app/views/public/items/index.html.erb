@@ -1,0 +1,19 @@
+<h2>商品一覧（ユーザー）</h2>
+<div class="">
+  <% @items.each do |item| %>
+    <table>
+      <tr>
+        <%= link_to item.name, item_path(item) %>
+      </tr>
+      <tr>
+        <%= item.price_excluding_tax.to_s + '円' %>
+      </tr>
+      <tr>
+        <%= item.genre.name %>
+      </tr>
+      <tr>
+        <%= item.sale_status %>
+      </tr>
+    </table>
+  <% end %>
+</div>

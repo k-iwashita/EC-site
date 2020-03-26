@@ -1,0 +1,27 @@
+<h2>カート内商品一覧（ユーザー）</h2>
+<p><%= link_to 'カートを削除する', '/cart_items', method: :delete %></p>
+<div class="">
+  <% @cart_items.each do |cart_item| %>
+    <table>
+      <tr>
+        <%= link_to cart_item.item.name, item_path(cart_item.item.id) %>
+      </tr>
+      <tr>
+        <%= cart_item.item.price_excluding_tax.to_s + '円' %>
+      </tr>
+      <tr>
+        <%= cart_item.item.genre.name %>
+      </tr>
+      <tr>
+        <%= form_for :cart_item, url: cart_item_path(cart_item), method: :patch do |f|%>
+          <%= f.label '数量' %>
+          <%= f.number_field :amount, min: 1, value: cart_item.amount %>
+          <%= f.submit '数を変更する' %>
+        <% end %>
+      </tr>
+      <tr>
+        <%= link_to 'この商品を削除する', cart_item_path(cart_item), method: :delete %>
+      </tr>
+    </table>
+  <% end %>
+</div>
