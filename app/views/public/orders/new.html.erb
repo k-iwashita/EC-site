@@ -1,2 +1,80 @@
-<h1>Public::Orders#new</h1>
-<p>Find me in app/views/public/orders/new.html.erb</p>
+<div class="">
+  <h2>支払情報入力（ユーザー）</h2>
+  <div class="">
+    <h3>新規配送先登録</h3>
+    <%= form_for :shipping_address, url: shipping_addresses_path, method: :post do |f| %>
+      <div class="">
+        <%= f.label '配送先名' %><br>
+        <%= f.text_field :name %>
+      </div>
+      <div class="">
+        <%= f.label '郵便番号' %>
+        <%= f.text_field :postal_code %>
+      </div>
+      <div class="">
+        <%= f.label '住所' %>
+        <%= f.text_field :address %>
+      </div>
+      <%= f.submit '新しい配送先として登録' %>
+    <% end %>
+  </div>
+
+  <div class="">
+    <h3>注文登録</h3>
+    <div class="">
+      <% @cart_items.each do |cart_item| %>
+        <table>
+          <tr>
+            <%= cart_item.item.name %>
+          </tr>
+          <tr>
+            <%= cart_item.amount.to_s + '個' %>
+          </tr>
+          <tr>
+            <% @total_price += cart_item.item.price_excluding_tax * cart_item.amount %>
+            <%= (cart_item.item.price_excluding_tax * cart_item.amount).to_s + '円' %>
+          </tr>
+        </table>
+        <div class="">
+          <%= "合計#{@total_price}円" %>
+        </div>
+      <% end %>
+
+      <div class="">
+        <%= form_for :order, url: orders_confirm_path do |f| %>
+          <%= f.label '配送先を選択'%><br>
+          <%= f.label '自宅' %>
+          <%= radio_button_tag :address, '自宅' %>
+
+          <% current_end_user.shipping_addresses.each do |shipping_address| %>
+            <%= f.label shipping_address.name %>
+            <%= radio_button_tag :address, shipping_address.id %>
+          <% end %><br>
+
+          <%= f.label '新規住所' %>
+          <div class="">
+            <%= f.label '宛名' %><br>
+            <%= f.text_field :address_user_name %>
+          </div>
+          <div class="">
+            <%= f.label '郵便番号' %>
+            <%= f.text_field :postal_code %>
+          </div>
+          <div class="">
+            <%= f.label '住所'%>
+            <%= f.text_area :address %>
+            <%=%>
+          </div>
+
+          <%= f.label '支払い方法' %><br>
+          <%= f.label 'クレジットカード' %>
+          <%= f.radio_button :payment_method, 0 %>
+          <%= f.label '銀行振込' %>
+          <%= f.radio_button :payment_method, 1 %>
+          <%= f.hidden_field :payment, :value => @total_price %>
+        <%= f.submit '注文を確認' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
