@@ -1,0 +1,26 @@
+ja:
+  enums:
+    genre:
+      valid_status:
+        is_valid: 有効
+        is_invalid: 無効
+    item:
+      sale_status:
+        is_saled: 販売中
+        not_saled: 販売中止
+    order_detail:
+      production_status:
+        cannot_start: 着手不可
+        before_productiton: 製作待ち
+        in_production: 製作中
+        after_production: 製作完了
+    order:
+      payment_method:
+        credit_card: クレジットカード
+        bank_transfer: 銀行振込
+      order_status:
+        before_payment: 入金待ち
+        checked_payment: 入金確認
+        in_production: 製作中
+        preparing_shipment: 発送準備中
+        after_shipment: 発送済み
