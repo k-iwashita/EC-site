@@ -1,0 +1,22 @@
+<table>
+  <% user = EndUser.with_deleted.find(@order.end_user_id) %>
+  <tr>
+    <p>user_name</p>
+    <%= "#{user.family_name} #{user.last_name}" %>
+  </tr>
+  <tr>
+    <p>配送先名</p>
+    <%= @order.address_user_name %>
+  </tr>
+  <tr>
+  </tr>
+  <tr>
+    <%= form_for :order, url: admin_order_path(@order), method: :patch do |f|%>
+      <% user = EndUser.with_deleted.find(@order.end_user_id) %>
+      <%= f.label '注文状況' %>
+      <%= @order.order_status %><br>
+      <%= f.select :order_status, Order.order_statuses, { include_blank: '選択してください' } %>
+      <%= f.submit '状況を変更する' %>
+    <% end %>
+  </tr>
+</table>

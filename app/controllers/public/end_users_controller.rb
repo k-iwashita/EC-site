@@ -17,6 +17,7 @@ class Public::EndUsersController < ApplicationController
   end
 
   def withdraw
+    @end_user = current_end_user
   end
 
   def destroy
