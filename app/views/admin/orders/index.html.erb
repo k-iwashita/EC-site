@@ -1,0 +1,6 @@
+<h2>受注一覧（管理者）</h2>
+<% @orders.each do |order| %>
+  <% user = EndUser.with_deleted.find(order.end_user_id) %>
+  <%= link_to "受注番号#{order.id}", admin_order_path(order) %>
+  <%= user.email %><br>
+<% end %>

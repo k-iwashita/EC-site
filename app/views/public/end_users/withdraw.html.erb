@@ -1,0 +1,4 @@
+<h2>退会確認画面</h2>
+
+<%= button_to '退会する', end_user_path(@end_user), method: :delete, data: { confirm: '削除しますか？' } %>
+<%= button_to '退会しない', end_user_path(@end_user), method: :get %>
