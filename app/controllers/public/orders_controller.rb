@@ -36,7 +36,9 @@ class Public::OrdersController < ApplicationController
                                              purchased_price: item.price_excluding_tax)
       order_details.save
     end
-    # current_end_user.cart_items.destroy
+    current_end_user.cart_items.each do |item|
+      item.destroy
+    end
     redirect_to :action => 'done'
   end
 
