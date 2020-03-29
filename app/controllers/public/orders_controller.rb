@@ -1,8 +1,12 @@
 class Public::OrdersController < ApplicationController
   def new
-    @total_price = 0
-    @cart_items = current_end_user.cart_items
-    @order = Order.new
+    if current_end_user.cart_items != []
+      @total_price = 0
+      @cart_items = current_end_user.cart_items
+      @order = Order.new
+    else
+      redirect_to root_path
+    end
   end
 
   def confirm
