@@ -1,6 +1,11 @@
 class Public::ItemsController < ApplicationController
   def index
-    @items = Item.all
+    if params[:items] && params[:items][:name]
+      item_name = params[:items][:name]
+      @items = Item.where(name: item_name)
+    else
+      @items = Item.all
+    end
   end
 
   def show
