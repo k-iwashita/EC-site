@@ -12,4 +12,5 @@ class ApplicationController < ActionController::Base
                                                        :postal_code_home,
                                                        :address_home])
   end
+  autocomplete :item, :name, full: true
 end

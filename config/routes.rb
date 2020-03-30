@@ -7,7 +7,10 @@ Rails.application.routes.draw do
      root to: 'items#top'
      get 'end_users/withdraw', to: 'end_users#withdraw'
      resources :end_users, only: [:show, :edit, :update, :destroy]
-     resources :items, only: [:index, :show]
+     resources :items do
+       get :autocomplete_item_name, on: :collection,
+       only: [:index, :show]
+     end
      delete 'cart_items', to: 'cart_items#destroy_all'
      resources :cart_items, only: [:index, :create, :update, :destroy]
      post 'orders/confirm', to: 'orders#confirm'

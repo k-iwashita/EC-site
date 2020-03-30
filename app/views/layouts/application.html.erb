@@ -19,6 +19,11 @@
               <li><%= link_to "カート一覧", cart_items_path %></li>
               <li><%= link_to "トップページ", root_path %></li>
               <li><%= link_to 'ログアウト', destroy_end_user_session_path, method: :delete %></li>
+              <div class="">
+                <%= form_tag(items_path, method: :get, enforce_utf8: false) do %>
+                  <%= autocomplete_field_tag 'items[name]', nil, autocomplete_item_name_items_path %>
+                <% end %>
+              </div>
             <% elsif admin_signed_in? %>
               <li><%= link_to "受注一覧", admin_orders_path %></li>
               <li><%= link_to "会員一覧", admin_end_users_path %></li>

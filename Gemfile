@@ -67,3 +67,6 @@ gem "refile-mini_magick"
 gem 'paranoia'
 gem 'enum_help'
 gem 'rails-i18n'
+gem 'rails4-autocomplete'
+gem "jquery-rails"
+gem 'jquery-ui-rails'
