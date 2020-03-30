@@ -25,5 +25,6 @@
     </table>
   <% end %>
 </div>
-
-<%= button_to '情報入力に進む', new_order_path, method: :get %>
+<%if current_end_user.cart_items != []%>
+  <%= button_to '情報入力に進む', new_order_path, method: :get %>
+<% end %>

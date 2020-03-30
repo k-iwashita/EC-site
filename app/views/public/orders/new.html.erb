@@ -1,23 +1,5 @@
 <div class="">
   <h2>支払情報入力（ユーザー）</h2>
-  <div class="">
-    <h3>新規配送先登録</h3>
-    <%= form_for :shipping_address, url: shipping_addresses_path, method: :post do |f| %>
-      <div class="">
-        <%= f.label '配送先名' %><br>
-        <%= f.text_field :name %>
-      </div>
-      <div class="">
-        <%= f.label '郵便番号' %>
-        <%= f.text_field :postal_code %>
-      </div>
-      <div class="">
-        <%= f.label '住所' %>
-        <%= f.text_field :address %>
-      </div>
-      <%= f.submit '新しい配送先として登録' %>
-    <% end %>
-  </div>
 
   <div class="">
     <h3>注文登録</h3>
@@ -42,13 +24,20 @@
 
       <div class="">
         <%= form_for :order, url: orders_confirm_path do |f| %>
+          <div class="">
+            <%= f.label '支払い方法' %><br>
+            <%= f.label 'クレジットカード' %>
+            <%= f.radio_button :payment_method, 0 %>
+            <%= f.label '銀行振込' %>
+            <%= f.radio_button :payment_method, 1 %>
+          </div>
           <%= f.label '配送先を選択'%><br>
           <%= f.label '自宅' %>
-          <%= radio_button_tag :address, '自宅' %>
+          <%= radio_button_tag :address, '自宅' %><br>
 
           <% current_end_user.shipping_addresses.each do |shipping_address| %>
             <%= f.label shipping_address.name %>
-            <%= radio_button_tag :address, shipping_address.id %>
+            <%= radio_button_tag :address, shipping_address.id %><br>
           <% end %><br>
 
           <%= f.label '新規住所' %>
@@ -66,11 +55,6 @@
             <%=%>
           </div>
 
-          <%= f.label '支払い方法' %><br>
-          <%= f.label 'クレジットカード' %>
-          <%= f.radio_button :payment_method, 0 %>
-          <%= f.label '銀行振込' %>
-          <%= f.radio_button :payment_method, 1 %>
           <%= f.hidden_field :payment, :value => @total_price %>
         <%= f.submit '注文を確認' %>
         <% end %>

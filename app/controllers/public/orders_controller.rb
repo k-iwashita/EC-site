@@ -1,8 +1,12 @@
 class Public::OrdersController < ApplicationController
   def new
-    @total_price = 0
-    @cart_items = current_end_user.cart_items
-    @order = Order.new
+    if current_end_user.cart_items != []
+      @total_price = 0
+      @cart_items = current_end_user.cart_items
+      @order = Order.new
+    else
+      redirect_to root_path
+    end
   end
 
   def confirm
@@ -22,6 +26,9 @@ class Public::OrdersController < ApplicationController
       @order.address = params[:order][:address]
       @order.postal_code = params[:order][:postal_code]
       @order.address_user_name = params[:order][:address_user_name]
+      address = current_end_user.shipping_addresses.create(name: params[:order][:address_user_name],
+                                                           postal_code: params[:order][:postal_code],
+                                                           address: params[:order][:address])
     end
     @total_price = 0
     @cart_items = current_end_user.cart_items
@@ -36,7 +43,9 @@ class Public::OrdersController < ApplicationController
                                              purchased_price: item.price_excluding_tax)
       order_details.save
     end
-    # current_end_user.cart_items.destroy
+    current_end_user.cart_items.each do |item|
+      item.destroy
+    end
     redirect_to :action => 'done'
   end
 

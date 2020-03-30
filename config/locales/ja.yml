@@ -11,7 +11,7 @@ ja:
     order_detail:
       production_status:
         cannot_start: 着手不可
-        before_productiton: 製作待ち
+        before_production: 製作待ち
         in_production: 製作中
         after_production: 製作完了
     order:
