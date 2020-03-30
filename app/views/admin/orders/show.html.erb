@@ -6,7 +6,7 @@
   </tr>
   <tr>
     <p>配送先名</p>
-    <%= @order.address_user_name %>
+    <%= @order.address_user_name %><br>
   </tr>
   <tr>
   </tr>
@@ -14,7 +14,7 @@
     <%= form_for :order, url: admin_order_path(@order), method: :patch do |f|%>
       <% user = EndUser.with_deleted.find(@order.end_user_id) %>
       <%= f.label '注文状況' %>
-      <%= @order.order_status %><br>
+      <%= @order.order_status_i18n %><br>
       <%= f.select :order_status, Order.order_statuses_i18n.keys.map { |k| [Order.order_statuses_i18n[k], k] } %>
       <%= f.submit '状況を変更する' %>
     <% end %>
