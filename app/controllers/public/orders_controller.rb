@@ -26,6 +26,9 @@ class Public::OrdersController < ApplicationController
       @order.address = params[:order][:address]
       @order.postal_code = params[:order][:postal_code]
       @order.address_user_name = params[:order][:address_user_name]
+      address = current_end_user.shipping_addresses.create(name: params[:order][:address_user_name],
+                                                           postal_code: params[:order][:postal_code],
+                                                           address: params[:order][:address])
     end
     @total_price = 0
     @cart_items = current_end_user.cart_items
