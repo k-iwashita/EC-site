@@ -1,23 +1,5 @@
 <div class="">
   <h2>支払情報入力（ユーザー）</h2>
-  <div class="">
-    <h3>新規配送先登録</h3>
-    <%= form_for :shipping_address, url: shipping_addresses_path, method: :post do |f| %>
-      <div class="">
-        <%= f.label '配送先名' %><br>
-        <%= f.text_field :name %>
-      </div>
-      <div class="">
-        <%= f.label '郵便番号' %>
-        <%= f.text_field :postal_code %>
-      </div>
-      <div class="">
-        <%= f.label '住所' %>
-        <%= f.text_field :address %>
-      </div>
-      <%= f.submit '新しい配送先として登録' %>
-    <% end %>
-  </div>
 
   <div class="">
     <h3>注文登録</h3>
