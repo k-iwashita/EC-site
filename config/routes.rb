@@ -5,7 +5,7 @@ Rails.application.routes.draw do
    }
    scope module: :public do
      root to: 'items#top'
-     get 'end_users/withdraw', to: 'end_users#withdraw'
+     get 'end_users/confirn', to: 'end_users#withdraw'
      resources :end_users, only: [:show, :edit, :update, :destroy]
      resources :items do
        get :autocomplete_item_name, on: :collection,
